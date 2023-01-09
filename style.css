@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
+ul, ol, li, menu {
+    list-style: none;
+}
+
 .hero {
     display: flex;
     flex-direction: column;
@@ -19,43 +27,69 @@
 .hero__subtitle {
     font-family: 'Roboto Mono', sans-serif;
     display: flex;
-    gap: 0 40px;
+    gap: 0 1rem;
 }
 
 .hero__title {
-    font-size: 6rem;
+    font-size: 1.5rem;
 }
 
 .hero__subtitle {
-    font-size: 4rem;
+    font-size: 1rem;
 }
 
-.text-highlighted:hover {
-    background-color: #ffb703;
+.text-highlighted {
+    position: relative;
+    display: inline-block;
+    color: currentColor;
+    overflow: hidden;
+    background: linear-gradient(to right, #ffb703, #ffb703 50%, currentColor 50%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: colorizing 0.5s linear;
-}
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 0.25s linear;
+  }
 
-.text-highlighted:hover::after {
+  .text-highlighted::after {
     content: '';
     display: block;
     width: 100%;
-    padding: 2px;
-    margin: -2px 0;
-    background-color: #ffb703;
-    animation: lining 0.5s linear;
+    padding: 1px;
+    background-color: currentColor;
 }
 
-@keyframes colorizing {
+  .text-highlighted:hover {
+    background-position: 0 100%;
+  }
+
+
+/* .text-highlighted:hover {
+    background-color: #ffb703;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: colorizing 5s linear;
+} */
+
+.text-highlighted:hover::after {
+    /* content: '';
+    display: block;
+    width: 100%;
+    padding: 2px;
+    margin: -2px 0; */
+    background-color: #ffb703;
+    animation: lining 0.25s linear;
+}
+
+/* @keyframes colorizing {
     0% {
         background-color: #fff;
     }
 
     50% {
         background-color: linear-gradient(
-            45deg,
-            #ffb703,
+            #ffb703 50%,
             #fff
         );
     }
@@ -63,15 +97,45 @@
     100% {
         background-color: #ffb703;
     }
-}
+} */
 
 @keyframes lining {
     0% {
-        width: 0%;
+        background-color: currentColor;
     }
 
     100% {
-        width: 100%;
+        background-color: #ffb703;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .hero__title {
+        font-size: 2rem;
+    }
+    
+    .hero__subtitle {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .hero__title {
+        font-size: 3rem;
+    }
+    
+    .hero__subtitle {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .hero__title {
+        font-size: 4rem;
+    }
+    
+    .hero__subtitle {
+        font-size: 3.5rem;
     }
 }
 
